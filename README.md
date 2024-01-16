@@ -1,2 +1,2 @@
 # iOS-Calculator
-yakınlaştırma %67 de en iyi "Optimize" bir şekilde kullanım sağlayabilirsiniz. 
+Yakınlaştırma %67 de en iyi "Optimize" bir şekilde kullanım sağlayabilirsiniz. 
