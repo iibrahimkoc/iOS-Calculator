@@ -6,13 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Calculator</title>
 	<link rel="stylesheet" href="calculator.css">
+	<script src="calculator.js"></script>
 </head>
 <!-- SAYFA ORANI %67 İKEN MÜKEMMEL GÖZÜKÜYOR O DURUM DÜZELTİLECEK-->
+<!-- BİLİMSEL MODA DA DÖNME OLSUNNNNNNN -->
+
 <body>
 	<div class="container">
 		<div class="background">
 			<div class="bar">
-				<div class="clock">23:49</div>
+				<div class="clock" id="clock">10:30</div>
 				<!--JAVASCRİPT İLE EŞ ZAMANLANACAK-->
 				<div class="mobile-info">
 					<span>
@@ -26,16 +29,18 @@
 					<span class="lte">LTE</span>
 					<span>
 						<!-- HESAP MİKTARINA GÖRE BİR BİR AZALMA OLACAK-->
-						<div class="battery-health">19</div>
+						<div class="battery-health">44</div>
 						<div class="battery">
-							<div class="box"></div>
+							<div class="box">
+								<div class="box-battery"></div>
+							</div>
 							<div class="circles"></div>
 						</div>
 					</span>
 				</div>
 			</div>
 			<!-- JAVASCRİPT İLE HESAP İŞLEMLERİ AKTİF EDİLECEK -->
-			<div class="result">0</div>
+			<div class="result">0.000.000</div>
 			<div class="button AC gray">AC</div>
 			<div class="button +/- gray">+/−</div>
 			<div class="button % gray">%</div>
@@ -61,6 +66,9 @@
 			</div>
 		</div>
 	</div>
+
+
 </body>
 
 </html>
+
