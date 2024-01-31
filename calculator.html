@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Calculator</title>
 	<link rel="stylesheet" href="calculator.css">
-	<script src="calculator.js"></script>
 </head>
 <!-- SAYFA ORANI %67 İKEN MÜKEMMEL GÖZÜKÜYOR O DURUM DÜZELTİLECEK-->
 <!-- BİLİMSEL MODA DA DÖNME OLSUNNNNNNN -->
@@ -29,37 +28,38 @@
 					<span class="lte">LTE</span>
 					<span>
 						<!-- HESAP MİKTARINA GÖRE BİR BİR AZALMA OLACAK-->
-						<div class="battery-health">44</div>
+						<div id="bataryValue" class="battery-health">79</div>
 						<div class="battery">
 							<div class="box">
-								<div class="box-battery"></div>
+								<div id="boxBataryValue" class="box-battery"></div>
 							</div>
 							<div class="circles"></div>
 						</div>
 					</span>
 				</div>
 			</div>
+
 			<!-- JAVASCRİPT İLE HESAP İŞLEMLERİ AKTİF EDİLECEK -->
-			<div class="result">0.000.000</div>
-			<div class="button AC gray">AC</div>
-			<div class="button +/- gray">+/−</div>
-			<div class="button % gray">%</div>
-			<div class="button / orange">÷</div>
-			<div class="button 7 black">7</div>
-			<div class="button 8 black">8</div>
-			<div class="button 9 black">9</div>
-			<div class="button x orange">×</div>
-			<div class="button 4 black">4</div>
-			<div class="button 5 black">5</div>
-			<div class="button 6 black">6</div>
-			<div class="button - orange">−</div>
-			<div class="button 1 black">1</div>
-			<div class="button 2 black">2</div>
-			<div class="button 3 black">3</div>
-			<div class="button + orange">+</div>
-			<div class="button zero black" style="justify-content: start;">0</div>
-			<div class="button , black virgul">,</div>
-			<div class="button = orange">=</div>
+			<div id="result" class="result">0</div>
+			<button onclick="AC()" id="AC" class="button AC gray">AC</button>
+			<button onclick="negatifOrPozitif()" class="button +/- gray">+/−</button>
+			<button onclick="mod()" class="button % gray">%</button>
+			<button onclick="bol()" id="bol" class="button / orange">÷</button>
+			<button onclick="seven()" id="seven" class="button 7 black">7</button>
+			<button onclick="eight()" id="eight" class="button 8 black">8</button>
+			<button onclick="nine()" id="nine" class="button 9 black">9</button>
+			<button onclick="carp()" id="carp" class="button x orange">×</button>
+			<button onclick="four()" id="four" class="button 4 black">4</button>
+			<button onclick="five()" id="five" class="button 5 black">5</button>
+			<button onclick="six()" id="six" class="button 6 black">6</button>
+			<button onclick="cikar()" id="cikar" class="button - orange">−</button>
+			<button onclick="one()" id="one" class="button 1 black">1</button>
+			<button onclick="two()" id="two" class="button 2 black">2</button>
+			<button onclick="three()" id="three" class="button 3 black">3</button>
+			<button onclick="ekle()" id="ekle" class="button + orange">+</button>
+			<button onclick="zero()" class="button zero black" style="justify-content: start;">0</button>
+			<button onclick="virgul()" class="button , black virgul">,</button>
+			<button onclick="sonuc()" class="button = orange">=</button>
 
 			<div class="home-buttons">
 				<div class="home-button"></div>
@@ -67,7 +67,7 @@
 		</div>
 	</div>
 
-
+	<script src="calculator.js"></script>
 </body>
 
 </html>
