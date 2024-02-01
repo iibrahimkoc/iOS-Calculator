@@ -1,206 +1,311 @@
 var tmp;
 var islem;
+const resultElement = document.getElementById("result");
+var bataryValue = document.getElementById("bataryValue");
+var boxBataryValue = document.getElementById("boxBataryValue");
+var fontSizeValue = 0;
 
-document.getElementById("bataryValue").textContent = Math.floor(Math.random() * 100);
-document.getElementById("boxBataryValue").style.width = parseInt(document.getElementById("bataryValue").textContent) + '%';
+/*----------------------------------------------------------
+Sorun-1: Eşittire basmadan 3 işlemi yapamıyoruz.
+Sorun-2: Ort. 9 sayıdan fazlasını yazdırmaması gerekiyor.
+Sorun-3: Sorun-1 de ki hatayı düzeltirken renk ayarını düzelmesi gerekiyor
+Sorun-4: "." dan sonraki cevabı olan değerlerde fazladan sıfırların kalkması gerekiyor.
+Sorun-5: Her 3 sayıdan sonra nokta koyulmasını istiyorum.
+------------------------------------------------------------*/
 
+
+
+//----SAÇMA BİR YÖNTEM ÇÜNKÜ 1 VE 7 SAYILARININ GENİŞLİKLERİ 
+//----DİĞER SAYILARA GÖRE DAHA KÜÇÜK O YÜZDEN TEKRARDAN HESAP
+//----YAPMAM LAZIM.---------------KISMEN DÜZELDİ------------//
+function resultLenght() {
+	console.log(resultElement.offsetWidth)
+	if (resultElement.offsetWidth > 375) { //bu koddan devam et
+		fontSizeValue++;
+	}
+	switch(fontSizeValue){
+		case 1:
+			resultElement.style.fontSize = 10 + "rem";
+			break;
+		case 2:
+			resultElement.style.fontSize = 8.5 + "rem";
+			break;
+		case 3:
+			resultElement.style.fontSize = 7.5 + "rem";
+			break;
+		case 4:
+			resultElement.style.fontSize = 10 + "rem";
+			break;
+	}
+	
+	//Not: resultElement.width yerine resultElement.offsetWidth kullanmayı 
+	//tercih ettim, çünkü offsetWidth özelliği, elementin görünür genişliğini 
+	//verirken, width CSS özelliği her zaman gerçek render edilen genişliği temsil etmeyebilir.
+
+}
+
+
+//---------ŞARJ AYARI-----------//
+bataryValue.textContent = Math.floor(Math.random() * 100);
+boxBataryValue.style.width = parseInt(bataryValue.textContent) + '%';
+function charge() {
+	bataryValue.textContent = parseInt(bataryValue.textContent) - 1;
+}
+
+//---------RENK AYARI-----------//
+function setColorstart(islemElement) {
+	document.getElementById(islemElement).style.backgroundColor = "rgb(255, 149, 0)"; //orange
+	document.getElementById(islemElement).style.color = "white";
+}
+function setColorEnd(islemElement) {
+	document.getElementById(islemElement).style.backgroundColor = "white";
+	document.getElementById(islemElement).style.color = "rgb(255, 149, 0)"; //orange
+}
+
+//---------VİRGÜL AYARI---------//
+function virgulToNokta() {
+	if (resultElement.textContent.includes(",")) {
+		resultElement.textContent = resultElement.textContent.replace(",", ".");
+	}
+}
+
+//---------İSLEM FONKSİYONLARI-----------//
 function AC() {
 	tmp = 0;
-	document.getElementById("result").textContent = 0;
+	resultElement.textContent = 0;
+	resultElement.style.fontSize = 12 + "rem";
+	fontSizeValue = 0;
 	islem = "";
-	document.getElementById("ekle").style.backgroundColor = "rgb(255, 149, 0)";
-	document.getElementById("ekle").style.color = "white";
-	document.getElementById("cikar").style.backgroundColor = "rgb(255, 149, 0)";
-	document.getElementById("cikar").style.color = "white";
-	document.getElementById("carp").style.backgroundColor = "rgb(255, 149, 0)";
-	document.getElementById("carp").style.color = "white";
-	document.getElementById("bol").style.backgroundColor = "rgb(255, 149, 0)";
-	document.getElementById("bol").style.color = "white";
-
+	setColorstart("ekle");
+	setColorstart("cikar");
+	setColorstart("carp");
+	setColorstart("bol");
 }
 function negatifOrPozitif() {
-	document.getElementById("result").textContent *= -1;
+	resultElement.textContent *= -1;
 }
 function ekle() {
-	tmp = Number(document.getElementById("result").textContent);
+	virgulToNokta();
+	tmp = Number(resultElement.textContent);
 	console.log(tmp);
-	document.getElementById("result").textContent = "";
+	resultElement.textContent = "";
 	islem = '+';
-	document.getElementById("ekle").style.backgroundColor = "white";
-	document.getElementById("ekle").style.color = "rgb(255, 149, 0)";
+	setColorEnd("ekle");
 }
 function cikar() {
-	tmp = Number(document.getElementById("result").textContent);
+	virgulToNokta();
+	tmp = Number(resultElement.textContent);
 	console.log(tmp);
-	document.getElementById("result").textContent = "";
+	resultElement.textContent = "";
 	islem = '-';
-	document.getElementById("cikar").style.backgroundColor = "white";
-	document.getElementById("cikar").style.color = "rgb(255, 149, 0)";
+	setColorEnd("cikar");
 }
 function carp() {
-	tmp = Number(document.getElementById("result").textContent);
+	virgulToNokta();
+	tmp = Number(resultElement.textContent);
 	console.log(tmp);
-	document.getElementById("result").textContent = "";
+	resultElement.textContent = "";
 	islem = '*';
-	document.getElementById("carp").style.backgroundColor = "white";
-	document.getElementById("carp").style.color = "rgb(255, 149, 0)";
+	setColorEnd("carp");
 }
 function bol() {
-	tmp = Number(document.getElementById("result").textContent);
+	virgulToNokta();
+	tmp = Number(resultElement.textContent);
 	console.log(tmp);
-	document.getElementById("result").textContent = "";
+	resultElement.textContent = "";
 	islem = '/';
-	document.getElementById("bol").style.backgroundColor = "white";
-	document.getElementById("bol").style.color = "rgb(255, 149, 0)";
+	setColorEnd("bol");
 }
 function mod() {
-	tmp = Number(document.getElementById("result").textContent);
+	virgulToNokta();
+	tmp = Number(resultElement.textContent);
 	console.log(tmp);
-	document.getElementById("result").textContent = "";
+	resultElement.textContent = "";
 	islem = '%';
 }
 function virgul() {
-
-	document.getElementById("result").textContent += '.';
-	console.log("virgül içindeyim");
-	if (document.getElementById("result").textContent[document.getElementById("result").textContent.length] == '.') {
-		console.log("selam");
+	// Eğer ekrandaki sayıda zaten bir virgül varsa, işlem yapma
+	if (!resultElement.textContent.includes(',')) {
+		// Eğer ekrandaki sayı boşsa veya sıfırsa, 0, şeklinde başla
+		if (resultElement.textContent === '' || resultElement.textContent === '0') {
+			resultElement.textContent = '0,';
+		} else {
+			// Eğer başka bir sayı varsa, sadece virgül ekle
+			resultElement.textContent += ',';
+		}
 	}
 }
+
 function sonuc() {
 	console.log("sonuc içindeyim");
 	console.log(tmp);
+
+	// Eğer ekrandaki sayıda virgül varsa, onu noktaya çevir
+	virgulToNokta();
+
+	// Yeni bir değişken ile ekrandaki sayıyı al
+	var currentNumber = Number(resultElement.textContent);
+
+	console.log("ilk" + tmp);
+	// Eğer tmp de virgül içeriyorsa, onu noktaya çevir
+	if (tmp.toString().includes(',')) {
+		tmp = parseFloat(tmp.toString().replace(',', '.'));
+		console.log("son" + tmp);
+	}
+
 	switch (islem) {
 		case '+':
-			document.getElementById("result").textContent = Number(document.getElementById("result").textContent) + tmp;
-			document.getElementById("ekle").style.backgroundColor = "rgb(255, 149, 0)";
-			document.getElementById("ekle").style.color = "white";
-			document.getElementById("bataryValue").textContent = parseInt(document.getElementById("bataryValue").textContent) - 1;
+			resultElement.textContent = tmp + currentNumber;
+			setColorstart("ekle");
+			charge();
 			break;
 		case '-':
-			document.getElementById("result").textContent = tmp - Number(document.getElementById("result").textContent);
-			document.getElementById("cikar").style.backgroundColor = "rgb(255, 149, 0)";
-			document.getElementById("cikar").style.color = "white";
-			document.getElementById("bataryValue").textContent = parseInt(document.getElementById("bataryValue").textContent) - 1;
+			resultElement.textContent = tmp - currentNumber;
+			setColorstart("cikar");
+			charge();
 			break;
 		case '*':
-			document.getElementById("result").textContent = Number(document.getElementById("result").textContent) * tmp;
-			document.getElementById("carp").style.backgroundColor = "rgb(255, 149, 0)";
-			document.getElementById("carp").style.color = "white";
-			document.getElementById("bataryValue").textContent = parseInt(document.getElementById("bataryValue").textContent) - 1;
+			resultElement.textContent = tmp * currentNumber;
+			setColorstart("carp");
+			charge();
 			break;
 		case '/':
-			document.getElementById("result").textContent = tmp / Number(document.getElementById("result").textContent);
-			document.getElementById("bol").style.backgroundColor = "rgb(255, 149, 0)";
-			document.getElementById("bol").style.color = "white";
-			document.getElementById("bataryValue").textContent = parseInt(document.getElementById("bataryValue").textContent) - 1;
+			if (currentNumber === 0) {
+				resultElement.textContent = "Hata";
+			} else {
+				resultElement.textContent = tmp / currentNumber;
+			}
+			setColorstart("bol");
+			charge();
 			break;
 		case '%':
-			document.getElementById("result").textContent = tmp % Number(document.getElementById("result").textContent);
-			document.getElementById("bataryValue").textContent = parseInt(document.getElementById("bataryValue").textContent) - 1;
+			resultElement.textContent = tmp % currentNumber;
+			charge();
 			break;
 		default:
 			break;
 	}
-	if(document.getElementById("result").textContent.length > 8){
-		document.getElementById("result").textContent = Number(document.getElementById("result").textContent).toFixed(6);
+
+	if (resultElement.textContent.length > 8) {
+		resultElement.textContent = Number(resultElement.textContent).toFixed(6);
 	}
-	
-	document.getElementById("boxBataryValue").style.width = parseInt(document.getElementById("bataryValue").textContent) + '%';
+
+	if (resultElement.textContent.includes('.')) {
+		resultElement.textContent = resultElement.textContent.replace('.', ',');
+	}
+	boxBataryValue.style.width = parseInt(bataryValue.textContent) + '%';
 }
 
 
 
+//-------------NUMBERS--------------//
+
 function zero() {
-	if (document.getElementById("result").textContent == "") {
-		document.getElementById("result").textContent = 0;
+	resultLenght();
+	if (resultElement.textContent == "") {
+		resultElement.textContent = 0;
 	}
-	else if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = 0;
+	else if (resultElement.textContent == 0) {
+		resultElement.textContent = 0;
 	}
 	else {
-		document.getElementById("result").textContent += 0;
+		resultElement.textContent += 0;
 	}
 }
 function one() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 1;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 1;
 	}
 	else {
-		document.getElementById("result").textContent += 1;
+		resultElement.textContent += 1;
 	}
 }
 function two() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 2;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 2;
 	}
 	else {
-		document.getElementById("result").textContent += 2;
+		resultElement.textContent += 2;
 	}
 }
 function three() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 3;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 3;
 	}
 	else {
-		document.getElementById("result").textContent += 3;
+		resultElement.textContent += 3;
 	}
 }
+
 function four() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 4;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 4;
 	}
 	else {
-		document.getElementById("result").textContent += 4;
+		resultElement.textContent += 4;
 	}
 }
+
 function five() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 5;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 5;
 	}
 	else {
-		document.getElementById("result").textContent += 5;
+		resultElement.textContent += 5;
 	}
 }
+
 function six() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 6;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 6;
 	}
 	else {
-		document.getElementById("result").textContent += 6;
+		resultElement.textContent += 6;
 	}
 }
+
 function seven() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 7;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 7;
 	}
 	else {
-		document.getElementById("result").textContent += 7;
+		resultElement.textContent += 7;
 	}
 }
+
 function eight() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 8;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 8;
 	}
 	else {
-		document.getElementById("result").textContent += 8;
+		resultElement.textContent += 8;
 	}
 }
+
 function nine() {
-	if (document.getElementById("result").textContent == 0) {
-		document.getElementById("result").textContent = "";
-		document.getElementById("result").textContent += 9;
+	resultLenght();
+	if (resultElement.textContent == 0) {
+		resultElement.textContent = "";
+		resultElement.textContent += 9;
 	}
 	else {
-		document.getElementById("result").textContent += 9;
+		resultElement.textContent += 9;
 	}
 }
 
@@ -210,7 +315,7 @@ function nine() {
 
 
 
-
+//----------SAAT AYARI-----------//
 function updateClock() {
 	// Şu anki tarih ve saat bilgisini al
 	var now = new Date();

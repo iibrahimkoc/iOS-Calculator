@@ -3,6 +3,9 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+:root{
+	--calculatorTextFont: Helvetica;
+}
 
 html {
 	font-size: 10px;
@@ -106,6 +109,9 @@ html {
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.batarySpan {
+	position: relative;
+}
 .battery-health {
 	width: 3.4rem;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -172,10 +178,10 @@ html {
 	display: flex;
 	justify-content: end;
 	align-items: end;
-	font-size: 10rem;
+	font-size: 12rem;
 	padding: 0 2rem;
 	color: white;
-	font-family: sans-serif;
+	font-family: var(--calculatorTextFont);
 }
 
 .background .button {
